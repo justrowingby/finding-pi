@@ -1,5 +1,6 @@
 import java.math.*;
 import java.util.Scanner;
+import java.util.regex.*;
 
 public class FindPi
 {
@@ -7,30 +8,34 @@ public class FindPi
 
     private static int YorN(String A)
     {
-        int fin;
+        String input = new String(A);
 
-        switch(A)
-        {
-            case "Y":
-            case "y":
-            case "Yes":
-            case "yes":
-                fin = 1;
-                break;
-            case "N":
-            case "n":
-            case "No":
-            case "no":
-                fin = 2;
-                break;
-            case " ":
-            case "\n":
-                fin = -1;
-            default:
-                fin = 0;
+        Pattern yp1 = Pattern.compile("(?i)yes");
+        Pattern yp2 = Pattern.compile("(?i)ye?i");
+        Pattern yp3 = Pattern.compile("(?i)y");
+        Matcher ym1 = yp1.matcher(input);
+        Matcher ym2 = yp2.matcher(input);
+        Matcher ym3 = yp3.matcher(input);
+        boolean yb = ym1.matches() || ym2.matches() || ym3.matches();
+
+        Pattern np1 = Pattern.compile("(?i)no");
+        Pattern np2 = Pattern.compile("(?i)n");
+        Matcher nm1 = np1.matcher(input);
+        Matcher nm2 = np2.matcher(input);
+        boolean nb = nm1.matches() || nm2.matches();
+
+        if(yb) {
+            return 1;
         }
-
-        return(fin);
+        else if(nb) {
+            return 2;
+        }
+        else if(A == " " || A == "\n") {
+            return -1;
+        }
+        else {
+            return 0;
+        }
     }
 
     private static boolean contYorN(String prompt, String ifTrue, String ifFalse)
