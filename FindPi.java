@@ -1,6 +1,8 @@
+//** Author: justrowingby
 import java.util.Scanner;
 import java.util.regex.*;
-
+//** This script prints pi to user-specified precision using
+//** the Pi object, which calculates it on the fly
 public class FindPi
 {
     static Scanner userInput = new Scanner(System.in);
