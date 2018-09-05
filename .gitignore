@@ -1,0 +1,4 @@
+# GitIgnore for temp and build files
+
+.DS_Store
+FindPi.class
