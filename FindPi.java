@@ -69,15 +69,15 @@ public class FindPi
     }
 
 
-    private static BigDecimal sqrt(BigDecimal input, final int SCALE) {
+    private static BigDecimal sqrt(BigDecimal input, MathContext precision) {;
         BigDecimal x0 = new BigDecimal("0"); //initialized value means nothing, just need a value to initialize
         BigDecimal x1 = new BigDecimal(Math.sqrt(input.doubleValue())); //take an approximation of the square root
         while (!x0.equals(x1)) {
             x0 = x1; //make x0 be our approimation
-            x1 = input.divide(x0, SCALE, BigDecimal.ROUND_HALF_UP); //how far off is it
+            x1 = input.divide(x0, precision); //how far off is it
             //take the average of the two approximations, getting a new approximation that is closer than either
             x1 = x1.add(x0);
-            x1 = x1.divide(BigDecimal.valueOf(2), SCALE, BigDecimal.ROUND_HALF_UP);
+            x1 = x1.divide(BigDecimal.valueOf(2), precision);
         } //keep iterating until (approximation == (originalValue / approximation) ),
           //meaning that the approximation is accurate to our scale degree
         return x1; //return the approximation, which is accurate to the needed scale
@@ -113,6 +113,7 @@ public class FindPi
     public static void main(String[] args)
     {
         int digits = howManyDigits();
+        MathContext calulate = new MathContext(digits + 20);
         boolean execute = contYorN(
                 "This script can take a long time, are you sure you want to continue? (y/n)",
                 "",
@@ -127,8 +128,8 @@ public class FindPi
 
         BigDecimal a = new BigDecimal("1.0");
         //BigDecimal b = new BigDecimal(1 / Math.sqrt(2));
-        BigDecimal mess0 = sqrt(new BigDecimal("2"), digits + 5 + 10);
-        BigDecimal b = new BigDecimal("1.0").divide(mess0, digits + 5 + 10, BigDecimal.ROUND_HALF_UP);
+        BigDecimal mess0 = sqrt(new BigDecimal("2"), calulate);
+        BigDecimal b = new BigDecimal("1.0").divide(mess0, calulate);
         BigDecimal t = new BigDecimal("0.25");
         BigDecimal p = new BigDecimal("1.0");
 
@@ -152,11 +153,11 @@ public class FindPi
             // a1 = (a + b) / 2;
             a1 = a;
             a1 = a1.add(b);
-            a1 = a1.divide(BigDecimal.valueOf(2),digits + 5 + 10, BigDecimal.ROUND_HALF_UP);
+            a1 = a1.divide(BigDecimal.valueOf(2), calulate);
             // b1 = Math.sqrt(a * b);
             b1 = b;
             b1 = b1.multiply(a);
-            b1 = sqrt(b1, digits + 5 + 10);
+            b1 = sqrt(b1, calulate);
             //t1 = t - (p * Math.pow((a - a1), 2));
             t1 = t;
             messy = a;
@@ -174,7 +175,7 @@ public class FindPi
             mess1 = mess1.multiply(mess1);
             mess2 = t1;
             mess2 = mess2.multiply(BigDecimal.valueOf(4));
-            pi = mess1.divide(mess2, digits + 5 + 10, BigDecimal.ROUND_HALF_UP);
+            pi = mess1.divide(mess2, calulate);
 
             myPi = new String(pi.toPlainString());
 
