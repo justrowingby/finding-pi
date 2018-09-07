@@ -195,6 +195,8 @@ public class FindPi
         } while(i < iterations);
         System.out.println("\nYour approximation of PI:");
         System.out.println(myPi.substring(0, digits + 2));
-        System.out.println( (myPi.substring(0, digits + 2)).length() );
+        System.out.println("That was pi with "
+        + (((myPi.substring(0, digits + 2)).length()) - 2)
+        + " digits past the decimal point!");
     }
 }
