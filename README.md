@@ -9,4 +9,4 @@ can be found [here](https://en.wikipedia.org/wiki/Gauss%E2%80%93Legendre_algorit
 
 The script uses the Java math library's BigDecimal object to allow any level of desired precision 
 
-The script has now been checked out to 100,000 digits beyond the decimal place for accuracy
+The script has now been checked out to 300,000 digits beyond the decimal place for accuracy
