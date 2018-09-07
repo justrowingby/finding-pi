@@ -114,6 +114,7 @@ public class FindPi
     {
         int digits = howManyDigits();
         MathContext calulate = new MathContext(digits + 20);
+        int iterations = (int) ( Math.log((double) digits) / Math.log(2.0) + 1);
         boolean execute = contYorN(
                 "This script can take a long time, are you sure you want to continue? (y/n)",
                 "",
@@ -191,8 +192,9 @@ public class FindPi
             p = p1;
 
             i++;
-        } while(i < (digits + 10)/4-1);
+        } while(i < iterations);
         System.out.println("\nYour approximation of PI:");
         System.out.println(myPi.substring(0, digits + 2));
+        System.out.println( (myPi.substring(0, digits + 2)).length() );
     }
 }
