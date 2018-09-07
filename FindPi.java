@@ -115,10 +115,14 @@ public class FindPi
         int digits = howManyDigits();
         MathContext calulate = new MathContext(digits + 20);
         int iterations = (int) ( Math.log((double) digits) / Math.log(2.0) + 1);
-        boolean execute = contYorN(
-                "This script can take a long time, are you sure you want to continue? (y/n)",
-                "",
-                "Exiting program...");
+        boolean execute = true;
+        if(digits > 30000)
+        {
+            execute = contYorN(
+                    "This script can take a long time, are you sure you want to continue? (y/n)",
+                    "",
+                    "Exiting program...");
+        }
         if(!execute)
         {
             System.exit(0);
