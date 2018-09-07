@@ -6,6 +6,11 @@ public class FindPi
 {
     static Scanner userInput = new Scanner(System.in);
 
+////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////// Private Methods /////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////// Checks for yes or no answers ////////////////////////////
     private static int YorN(String A)
     {
         String input = new String(A);
@@ -37,7 +42,9 @@ public class FindPi
             return 0;
         }
     }
+/////////////////////////// End of yes/no checker //////////////////////////////
 
+/////////////////////// Prompts user with a yes/no question ////////////////////
     private static boolean contYorN(String prompt, String ifTrue, String ifFalse)
     {
         int contYorN = -1;
@@ -67,8 +74,9 @@ public class FindPi
             }
         }
     }
+///////////////////////// End of yes/no prompt /////////////////////////////////
 
-
+////// Calculates a sqrt in BigDecimal to the required level of precision //////
     private static BigDecimal sqrt(BigDecimal input, MathContext precision) {;
         BigDecimal x0 = new BigDecimal("0"); //initialized value means nothing, just need a value to initialize
         BigDecimal x1 = new BigDecimal(Math.sqrt(input.doubleValue())); //take an approximation of the square root
@@ -82,8 +90,9 @@ public class FindPi
           //meaning that the approximation is accurate to our scale degree
         return x1; //return the approximation, which is accurate to the needed scale
     }
+///////////////////////////////// End of sqrt //////////////////////////////////
 
-
+////////// Prompts the user to enter their desired level of precision //////////
     private static int howManyDigits()
     {
         int digits = 0;
@@ -109,7 +118,13 @@ public class FindPi
         }
         return digits;
     }
+////////////////////////// End of Private Methods //////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
+
+////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////// Main ///////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
     public static void main(String[] args)
     {
         int digits = howManyDigits();
@@ -130,7 +145,7 @@ public class FindPi
 
         ////////an implementation of the Gauss–Legendre algorithm
 
-
+        ///////////////////////// Variable Set Up //////////////////////////////
         BigDecimal a = new BigDecimal("1.0");
         //BigDecimal b = new BigDecimal(1 / Math.sqrt(2));
         BigDecimal mess0 = sqrt(new BigDecimal("2"), calulate);
@@ -152,7 +167,10 @@ public class FindPi
         BigDecimal mess2;
 
         int i = 0;
+        ///////////////////////// End of set up ////////////////////////////////
 
+
+        //////////////////////// Algorithm loop ////////////////////////////////
         do
         {
             // a1 = (a + b) / 2;
@@ -196,10 +214,14 @@ public class FindPi
 
             i++;
         } while(i < iterations);
+        /////////////////////// End of loop ////////////////////////////////////
+
+
         System.out.println("\nYour approximation of PI:");
         System.out.println(myPi.substring(0, digits + 2));
         System.out.println("That was pi with "
         + (((myPi.substring(0, digits + 2)).length()) - 2)
         + " digits past the decimal point!");
     }
+///////////////////////////// End of Main //////////////////////////////////////
 }
