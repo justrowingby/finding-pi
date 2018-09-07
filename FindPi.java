@@ -184,9 +184,8 @@ public class FindPi
 
             myPi = new String(pi.toPlainString());
 
-            if(i % 90 == 0)
+            if(i % 4 == 0)
             {
-                //System.out.println(myPi.substring(0, (i+1)*4));
                 System.out.println("Executing...");
             }
 
