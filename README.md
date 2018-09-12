@@ -8,4 +8,5 @@ including the mathematical notation this script was based on,
 can be found [here](https://en.wikipedia.org/wiki/Gauss%E2%80%93Legendre_algorithm#Algorithm "Wikipedia")
 
 The script uses the Java math library's BigDecimal object to allow any level of desired precision 
-(sacrificing some code readability, sadly)
+
+The script has now been checked out to 300,000 digits beyond the decimal place for accuracy
